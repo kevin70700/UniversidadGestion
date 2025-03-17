@@ -1,4 +1,5 @@
 package co.edu.uniquindio.poo.model;
+
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -38,6 +39,23 @@ public class Universidad {
         JOptionPane.showMessageDialog(null, "Estudiante no encontrado.");
     }
 
+    public Estudiante obtenerMejorEstudiantePorNota(int indiceNota) {
+        Estudiante mejorEstudiante = null;
+        double mejorNota = -1;
+
+        for (Estudiante estudiante : estudiantes) {
+            if (indiceNota >= 0 && indiceNota < estudiante.getNotas().size()) {
+                double notaActual = estudiante.getNotas().get(indiceNota).getValor();
+                if (notaActual > mejorNota) {
+                    mejorNota = notaActual;
+                    mejorEstudiante = estudiante;
+                }
+            }
+        }
+
+        return mejorEstudiante;
+    }
+
     public String mostrarNotasYPromedios() {
         StringBuilder sb = new StringBuilder();
         for (Estudiante e : estudiantes) {
@@ -53,5 +71,7 @@ public class Universidad {
         }
         return sb.toString();
     }
+
 }
+
 
